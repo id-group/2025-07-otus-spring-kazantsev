@@ -1,1 +1,1 @@
-# java-spring-2025-07
+# 2025-07 otus spring Казанцев А.М.
