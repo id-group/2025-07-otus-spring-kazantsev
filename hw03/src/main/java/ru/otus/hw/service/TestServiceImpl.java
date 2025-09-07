@@ -29,17 +29,15 @@ public class TestServiceImpl implements TestService {
 
             AtomicInteger counter = new AtomicInteger();
             question.answers().forEach(
-                    answer -> ioService.printLine(String.format("%d.%s", counter.incrementAndGet(), answer.text()))
+                    answer -> ioService.printLine(
+                            String.format("%d.%s", counter.incrementAndGet(), answer.text())
+                    )
             );
 
-            final int min = 1;
-            final int max = question.answers().size();
             var isAnswerValid = question.answers()
-                    .get(ioService.readIntForRangeWithPromptLocalized(
-                            min, max,
+                    .get(ioService.readIntForRangeWithPromptLocalized(1, question.answers().size(),
                             "TestService.answer.invitation",
-                            "TestService.answer.error.incorrectanswer"
-                    )-1)
+                            "TestService.answer.error.incorrectanswer") - 1)
                     .isCorrect();
             testResult.applyAnswer(question, isAnswerValid);
         }
